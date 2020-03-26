@@ -6,7 +6,7 @@ public class Main{
 
     public static void main(String[] args) throws IOException {
         TextHandling analysis = new TextHandling();
-        String fileName = "extraitalice";
+        String fileName = "textesimple";
         String pathName = "Data/" + fileName + ".txt";
         HashMap<Character, Integer> sortedHashMap = new HashMap<Character, Integer>();
         sortedHashMap = analysis.sortByFrequency(analysis.createAlphabet(pathName));
@@ -79,7 +79,7 @@ public class Main{
         }
         content.flush();
         binaryFile.close();
-        System.out.println("\nThe binary file '" + fileName + "_comp.bin' corresponding to the '" + fileName + ".txt' text file has successfully been created.");
+        System.out.println("\nThe binary file '" + "\u001B[33m" + fileName + "_comp.bin'" + "\u001B[0m corresponding to the '" + "\u001B[33m" + fileName + ".txt'" + "\u001B[0m text file has successfully been created.");
 
         File binFile = new File("Data/" + fileName + "_comp.bin");
         int binFileSize = (int) binFile.length();
@@ -88,6 +88,6 @@ public class Main{
         int txtFileSize = (int) txtFile.length();
 
         float compressionRate = 1 - ((float) binFileSize / (float) txtFileSize);
-        System.out.println("\nCompression rate :\n" + (int) (compressionRate * 100) + "%");
+        System.out.println("\nCompression rate :\n" + "\u001B[33m" + (int) (compressionRate * 100) + "%" + "\u001B[0m");
     }
 }
