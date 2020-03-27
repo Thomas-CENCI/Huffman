@@ -24,20 +24,22 @@ public class Main{
         alphabetContent.flush();
         alphabetContent.close();
 
-        System.out.println("\nOccurences (sorted by frequency and ASCII):\n" + sortedHashMap);
-        System.out.println("\nNumber of characters :\n" + analysis.numberOfCharacters);
+        int numberOfCharacters = analysis.numberOfCharacters;
+
+        System.out.println("\nOccurences (sorted by frequency and ASCII):\n" + "\u001B[33m" + sortedHashMap + "\u001B[0m");
+        System.out.println("\nNumber of characters :\n" + "\u001B[33m" + numberOfCharacters + "\u001B[0m");
 
         Tree tree = new Tree();
         tree.createNodeList(sortedHashMap);
         ArrayList<Node> nodeList = new ArrayList(tree.nodeList);
         Node root = tree.createTree(nodeList);
-        System.out.println("\nHuffman tree's root's value :\n" + root.occurence);
+        System.out.println("\nHuffman tree's root's value :\n" + "\u001B[33m" + root.occurence + "\u001B[0m");
 
         HashMap<Character, String> encodedAlphabet = new HashMap<Character, String>();
         for(Character key : sortedHashMap.keySet()){
             encodedAlphabet.put((char) key, root.encode("", key, new ArrayList<Node>()));
         }
-        System.out.println("\nEncoding of the alphabet :\n" + encodedAlphabet);
+        System.out.println("\nEncoding of the alphabet :\n" + "\u001B[33m" + encodedAlphabet + "\u001B[0m");
 
         String code = "";
         BufferedReader reader = new BufferedReader(new FileReader(pathName));
@@ -52,7 +54,9 @@ public class Main{
         }
 
         reader.close();
-        System.out.println("\nString that contains the code :\n" + code);
+
+        int length = code.length();
+        System.out.println("\nString that contains the code :\n" + "\u001B[33m" + code + "\u001B[0m");
 
         String binaryCode = "";
 
@@ -89,5 +93,7 @@ public class Main{
 
         float compressionRate = 1 - ((float) binFileSize / (float) txtFileSize);
         System.out.println("\nCompression rate :\n" + "\u001B[33m" + (int) (compressionRate * 100) + "%" + "\u001B[0m");
+
+        System.out.println("\nAverage length of encoded characters :\n" + "\u001B[33m" + length/numberOfCharacters + "\u001B[0m");
     }
 }
